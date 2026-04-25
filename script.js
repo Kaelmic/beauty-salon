@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const nameInput = document.querySelector('input[name="Customer Name"]');
   const phoneInput = document.querySelector('input[name="Phone Number"]');
+  const submitBtn = form.querySelector("button");
 
   if (nameInput) {
     nameInput.addEventListener("input", () => {
@@ -40,6 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const data = new FormData(form);
 
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
     try {
       const response = await fetch(form.action, {
         method: "POST",
@@ -57,6 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       alert("Network error. Please check your connection.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Request";
     }
   });
 });
