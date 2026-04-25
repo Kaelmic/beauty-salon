@@ -1,125 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keira Natalie Hair Studio</title>
-    <link href="styles.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keira Natalie Hair Studio | Appointment Request</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-   <section class="hero">
-  <div class="hero-content">
-    <p class="hero-label">Hair Salon in Malta</p>
 
-    <h1>Keira Natalie Hair Studio</h1>
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-label">Hair Salon in Malta</p>
 
-    <p class="hero-text">
-      Fresh cuts, color, and hair treatments made simple. Request your appointment online and we’ll confirm your booking.
+      <h1>Keira Natalie Hair Studio</h1>
+
+      <p class="hero-text">
+        Fresh cuts, color, and hair treatments made simple. Request your appointment online and we’ll contact you to confirm.
+      </p>
+
+      <a href="#booking" class="btn">Request Appointment</a>
+    </div>
+  </section>
+
+  <section class="services">
+    <h2>Our Services</h2>
+
+    <div class="services-grid">
+      <div class="service-card" onclick="scrollToBooking()">
+        <h3>Haircut</h3>
+        <p>Fresh cut and styling tailored to your look.</p>
+        <span>From €15</span>
+      </div>
+
+      <div class="service-card" onclick="scrollToBooking()">
+        <h3>Hair Color</h3>
+        <p>Full color, highlights, or root touch-up.</p>
+        <span>From €40</span>
+      </div>
+
+      <div class="service-card" onclick="scrollToBooking()">
+        <h3>Hair Treatment</h3>
+        <p>Repair, smooth, and restore shine.</p>
+        <span>From €25</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+
+    <div class="steps">
+      <div class="step">
+        <h3>1. Submit Request</h3>
+        <p>Choose your preferred service, date, and time.</p>
+      </div>
+
+      <div class="step">
+        <h3>2. We Check Availability</h3>
+        <p>Our team reviews your request and schedule.</p>
+      </div>
+
+      <div class="step">
+        <h3>3. We Confirm</h3>
+        <p>We contact you by phone or WhatsApp to confirm your appointment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking" class="booking">
+    <h2>Request an Appointment</h2>
+    <p>
+      Choose your preferred service, date, and time. 
+      Our team will review your request and contact you to confirm your booking.
     </p>
 
-    <a href="#booking" class="btn">Book Now</a>
-  </div>
-</section>
-<section class="services">
-  <h2>Our Services</h2>
+    <form action="https://formspree.io/f/myklvygy" method="POST" class="booking-form">
+      <input type="hidden" name="_subject" value="New Booking Request - Keira Natalie Hair Studio">
+      <input type="hidden" name="_template" value="table">
 
-  <div class="services-grid">
-    
-    <div class="service-card" onclick="scrollToBooking()">
-      <h3>Haircut</h3>
-      <p>Fresh cut and styling tailored to your look.</p>
-      <span>From €15</span>
-    </div>
+      <label>
+        Full Name
+        <input 
+          type="text" 
+          name="Customer Name" 
+          placeholder="Enter your full name" 
+          pattern="[A-Za-z\s]+" 
+          title="Only letters are allowed"
+          required
+        >
+      </label>
 
-    <div class="service-card" onclick="scrollToBooking()">
-      <h3>Hair Color</h3>
-      <p>Full color, highlights, or root touch-up.</p>
-      <span>From €40</span>
-    </div>
+      <label>
+        Phone Number
+        <input 
+          type="tel" 
+          name="Phone Number" 
+          placeholder="+356 99123456" 
+          pattern="[\+0-9\s]+" 
+          title="Enter a valid phone number"
+          required
+        >
+      </label>
 
-    <div class="service-card" onclick="scrollToBooking()">
-      <h3>Hair Treatment</h3>
-      <p>Repair, smooth, and restore shine.</p>
-      <span>From €25</span>
-    </div>
+      <label>
+        Service
+        <select name="Service" required>
+          <option value="">Choose a service</option>
+          <option>Haircut</option>
+          <option>Hair Color</option>
+          <option>Hair Treatment</option>
+        </select>
+      </label>
 
-  </div>
-</section>
+      <label>
+        Preferred Date
+        <input type="date" name="Preferred Date" required>
+      </label>
 
-<section id="booking" class="booking">
-  <h2>Request an Appointment</h2>
-<p>
-  Choose your preferred service, date, and time. 
-  Our team will review your request and contact you to confirm your booking.
-</p>
+      <label>
+        Preferred Time
+        <input type="time" name="Preferred Time" required>
+      </label>
 
-  <form action="https://formspree.io/f/myklvygy" method="POST" class="booking-form">
+      <label>
+        Notes
+        <textarea name="Notes" placeholder="Any special request?"></textarea>
+      </label>
 
-    <!-- ✅ Better email subject -->
-    <input type="hidden" name="_subject" value="New Booking Request - Keira Natalie Hair Studio">
+      <button type="submit" class="btn">Submit Request</button>
 
-    <label>
-      Full Name
-      <input 
-        type="text" 
-        name="Customer Name" 
-        placeholder="Enter your full name" 
-        pattern="[A-Za-z\s]+" 
-        title="Only letters are allowed"
-        required
-      >
-    </label>
+      <p class="note">
+        *This is a booking request. Your appointment is confirmed after we contact you.
+      </p>
+    </form>
 
-    <label>
-      Phone Number
-      <input 
-        type="tel" 
-        name="Phone Number" 
-        placeholder="+356 99123456" 
-        pattern="[\+0-9\s]+" 
-        title="Enter a valid phone number"
-        required
-      >
-    </label>
+    <p id="success-message" style="display:none;">
+      ✅ Booking request sent! We’ll contact you shortly.
+    </p>
 
-    <label>
-      Service
-      <select name="Service" required>
-        <option value="">Choose a service</option>
-        <option>Haircut</option>
-        <option>Hair Color</option>
-        <option>Hair Treatment</option>
-      </select>
-    </label>
+    <a href="https://wa.me/3561234567" class="whatsapp-btn" target="_blank">
+      Message us on WhatsApp
+    </a>
+  </section>
 
-    <label>
-      Preferred Date
-      <input type="date" name="Preferred Date" required>
-    </label>
+  <footer class="footer">
+    <p>© 2026 Keira Natalie Hair Studio. All rights reserved.</p>
+  </footer>
 
-    <label>
-      Preferred Time
-      <input type="time" name="Preferred Time" required>
-    </label>
-
-    <label>
-      Notes
-      <textarea name="Notes" placeholder="Any special request?"></textarea>
-    </label>
-
-    <button type="submit" class="btn">Submit Booking</button>
-    <p class="note">
-  *This is a booking request. Your appointment is confirmed after we contact you.
-</p>
-  </form>
-
-  <p id="success-message" style="display:none;">
-    ✅ Booking request sent! We’ll contact you shortly.
-  </p>
-
-</section>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
