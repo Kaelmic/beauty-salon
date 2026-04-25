@@ -192,6 +192,7 @@ body {
   gap: 8px;
   font-weight: 600;
   color: #374151;
+  min-width: 0;
 }
 
 .booking-form input,
@@ -203,6 +204,8 @@ body {
   border-radius: 12px;
   font-size: 1rem;
   font-family: inherit;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .booking-form textarea {
