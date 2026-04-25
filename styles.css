@@ -297,3 +297,9 @@ body {
     font-size: 1.6rem;
   }
 }
+
+.day-display {
+  font-size: 0.9rem;
+  color: #ec4899;
+  font-weight: 600;
+}
