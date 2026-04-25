@@ -12,6 +12,7 @@ body {
   font-family: Arial, sans-serif;
   background: #fff7fb;
   color: #111827;
+  overflow-x: hidden;
 }
 
 #booking {
@@ -163,11 +164,13 @@ body {
 
 .booking {
   max-width: 700px;
+  width: calc(100% - 32px);
   margin: 80px auto;
   padding: 40px;
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 .booking h2 {
@@ -185,27 +188,41 @@ body {
 .booking-form {
   display: grid;
   gap: 18px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .booking-form label {
   display: grid;
   gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   font-weight: 600;
   color: #374151;
-  min-width: 0;
 }
 
 .booking-form input,
 .booking-form select,
 .booking-form textarea {
+  display: block;
   width: 100%;
   max-width: 100%;
   min-width: 0;
   padding: 14px 16px;
   border: 1px solid #d1d5db;
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: 16px;
   font-family: inherit;
+}
+
+.booking-form input[type="date"],
+.booking-form input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 52px;
+  line-height: normal;
 }
 
 .booking-form textarea {
@@ -263,10 +280,15 @@ body {
     padding: 60px 20px;
   }
 
+  .services,
+  .how-it-works {
+    margin: 60px auto;
+  }
+
   .booking {
     width: calc(100% - 32px);
     margin: 40px 16px;
-    padding: 25px;
+    padding: 22px;
   }
 
   .booking h2,
@@ -274,10 +296,4 @@ body {
   .how-it-works h2 {
     font-size: 1.6rem;
   }
-  .booking-form input,
-  .booking-form select,
-  .booking-form textarea {
-    font-size: 16px;
-  }
-
 }
