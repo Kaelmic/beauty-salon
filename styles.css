@@ -199,13 +199,13 @@ body {
 .booking-form select,
 .booking-form textarea {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 14px 16px;
   border: 1px solid #d1d5db;
   border-radius: 12px;
   font-size: 1rem;
   font-family: inherit;
-  max-width: 100%;
-  min-width: 0;
 }
 
 .booking-form textarea {
@@ -264,6 +264,7 @@ body {
   }
 
   .booking {
+    width: calc(100% - 32px);
     margin: 40px 16px;
     padding: 25px;
   }
@@ -273,4 +274,10 @@ body {
   .how-it-works h2 {
     font-size: 1.6rem;
   }
+  .booking-form input,
+  .booking-form select,
+  .booking-form textarea {
+    font-size: 16px;
+  }
+
 }
