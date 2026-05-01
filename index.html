@@ -26,19 +26,19 @@
     <h2>Our Services</h2>
 
     <div class="services-grid">
-      <div class="service-card" onclick="scrollToBooking()">
+      <div class="service-card" onclick="scrollToBooking('Haircut')">
         <h3>Haircut</h3>
         <p>Fresh cut and styling tailored to your look.</p>
         <span>From €15</span>
       </div>
 
-      <div class="service-card" onclick="scrollToBooking()">
+      <div class="service-card" onclick="scrollToBooking('Hair Color')">
         <h3>Hair Color</h3>
         <p>Full color, highlights, or root touch-up.</p>
         <span>From €40</span>
       </div>
 
-      <div class="service-card" onclick="scrollToBooking()">
+      <div class="service-card" onclick="scrollToBooking('Hair Treatment')">
         <h3>Hair Treatment</h3>
         <p>Repair, smooth, and restore shine.</p>
         <span>From €25</span>
@@ -104,7 +104,7 @@
 
       <label>
         Service
-        <select name="Service" required>
+        <select name="Service" id="serviceSelect" required>
           <option value="">Choose a service</option>
           <option>Haircut</option>
           <option>Hair Color</option>
@@ -112,21 +112,19 @@
         </select>
       </label>
 
+        <label>
+  Preferred Date
+  <input type="date" name="Preferred Date" id="dateInput" required>
+  <p id="day-display" class="day-display"></p>
+</label>
+        
       <label>
-        Preferred Date
-        <input type="date" name="Preferred Date" id="dateInput" required>
-        <p id="day-display" class="day-display"></p>
-        </label>
-
-      <label>
-        Preferred Time
-        <input type="time" name="Preferred Time" required>
-      </label>
-
-      <label>
-        Notes
-        <textarea name="Notes" placeholder="Any special request?"></textarea>
-      </label>
+  Preferred Time
+  <select name="Preferred Time" id="timeInput" required>
+    <option value="">Select time</option>
+  </select>
+</label>
+</label>
 
       <button type="submit" class="btn">Submit Request</button>
 
