@@ -8,7 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const phoneInput = document.querySelector('input[name="Phone Number"]');
   const dateInput = document.getElementById("dateInput");
   const dayDisplay = document.getElementById("day-display");
+  const timeInput = document.getElementById("timeInput");
   const submitBtn = form.querySelector("button");
+
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
+  const todayFormatted = `${yyyy}-${mm}-${dd}`;
+
+  if (dateInput) {
+    dateInput.min = todayFormatted;
+  }
 
   if (nameInput) {
     nameInput.addEventListener("input", () => {
@@ -24,14 +35,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (dateInput && dayDisplay) {
     dateInput.addEventListener("change", () => {
+      if (!dateInput.value) return;
+
       const selectedDate = new Date(dateInput.value + "T00:00:00");
 
       const dayName = selectedDate.toLocaleDateString("en-US", {
         weekday: "long",
       });
 
+      const dayNumber = selectedDate.getDay();
+
+      const closedDays = [0]; // Sunday
+
+      if (closedDays.includes(dayNumber)) {
+        dayDisplay.textContent = `Sorry, we are closed on ${dayName}. Please choose another date.`;
+        dateInput.value = "";
+        return;
+      }
+
       dayDisplay.textContent = `Selected day: ${dayName}`;
     });
+  }
+    if (timeInput) {
+    const startHour = 9;
+    const endHour = 18;
+
+    for (let hour = startHour; hour <= endHour; hour++) {
+      ["00", "15", "30", "45"].forEach(minute => {
+        const time = `${String(hour).padStart(2, "0")}:${minute}`;
+
+        // optional: stop exactly at 18:00 only
+        if (hour === endHour && minute !== "00") return;
+
+        const option = document.createElement("option");
+        option.value = time;
+        option.textContent = time;
+
+        timeInput.appendChild(option);
+      });
+    }
   }
 
   form.addEventListener("submit", async (e) => {
@@ -39,7 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const name = nameInput.value.trim();
     const phone = phoneInput.value.trim();
+    const selectedTime = timeInput.value;
 
+    if (selectedTime < "09:00" || selectedTime > "18:00") {
+      alert("Please choose a time between 09:00 and 18:00.");
+      return;
+    }
+    
     const nameValid = /^[A-Za-z\s]+$/.test(name);
     const phoneValid = /^[\+0-9\s]+$/.test(phone);
 
@@ -69,11 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         form.reset();
-
-        if (dayDisplay) {
-          dayDisplay.textContent = "";
-        }
-
+        dayDisplay.textContent = "";
         successMessage.style.display = "block";
       } else {
         alert("Something went wrong. Please try again.");
@@ -87,6 +131,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function scrollToBooking() {
-  document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+function scrollToBooking(serviceName) {
+  const bookingSection = document.getElementById("booking");
+  const serviceSelect = document.getElementById("serviceSelect");
+
+  if (serviceSelect && serviceName) {
+    serviceSelect.value = serviceName;
+  }
+
+  bookingSection.scrollIntoView({ behavior: "smooth" });
 }
