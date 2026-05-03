@@ -11,15 +11,73 @@ document.addEventListener("DOMContentLoaded", () => {
   const timeInput = document.getElementById("timeInput");
   const submitBtn = form.querySelector("button");
 
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, "0");
-  const dd = String(today.getDate()).padStart(2, "0");
-  const todayFormatted = `${yyyy}-${mm}-${dd}`;
+  const startHour = 9;
+  const endHour = 18;
+  const cutoffHour = 20;
 
-  if (dateInput) {
-    dateInput.min = todayFormatted;
+  function formatDate(date) {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
   }
+
+  function isPastCutoffTime() {
+    const now = new Date();
+    return now.getHours() >= cutoffHour;
+  }
+
+  function getMinimumBookingDate() {
+    const minDate = new Date();
+
+    if (isPastCutoffTime()) {
+      minDate.setDate(minDate.getDate() + 1);
+    }
+
+    return formatDate(minDate);
+  }
+
+  function setMinimumDate() {
+    if (!dateInput) return;
+    dateInput.min = getMinimumBookingDate();
+  }
+
+  function generateTimeSlots() {
+    if (!timeInput) return;
+
+    timeInput.innerHTML = `<option value="">Select time</option>`;
+
+    if (!dateInput.value) return;
+
+    const now = new Date();
+    const todayFormatted = formatDate(now);
+    const isToday = dateInput.value === todayFormatted;
+
+    for (let hour = startHour; hour <= endHour; hour++) {
+      ["00", "15", "30", "45"].forEach((minute) => {
+        if (hour === endHour && minute !== "00") return;
+
+        const time = `${String(hour).padStart(2, "0")}:${minute}`;
+        const option = document.createElement("option");
+
+        option.value = time;
+        option.textContent = time;
+
+        if (isToday) {
+          const slotDateTime = new Date(`${dateInput.value}T${time}:00`);
+
+          if (slotDateTime <= now) {
+            option.disabled = true;
+            option.textContent = `${time} - unavailable`;
+          }
+        }
+
+        timeInput.appendChild(option);
+      });
+    }
+  }
+
+  setMinimumDate();
 
   if (nameInput) {
     nameInput.addEventListener("input", () => {
@@ -35,59 +93,82 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (dateInput && dayDisplay) {
     dateInput.addEventListener("change", () => {
-      if (!dateInput.value) return;
+      setMinimumDate();
+
+      if (!dateInput.value) {
+        dayDisplay.textContent = "";
+        generateTimeSlots();
+        return;
+      }
+
+      const minBookingDate = getMinimumBookingDate();
+
+      if (dateInput.value < minBookingDate) {
+        dayDisplay.textContent = "Please choose a valid future date.";
+        dateInput.value = "";
+        generateTimeSlots();
+        return;
+      }
 
       const selectedDate = new Date(dateInput.value + "T00:00:00");
-
       const dayName = selectedDate.toLocaleDateString("en-US", {
         weekday: "long",
       });
 
       const dayNumber = selectedDate.getDay();
-
-      const closedDays = [0]; // Sunday
+      const closedDays = [0];
 
       if (closedDays.includes(dayNumber)) {
         dayDisplay.textContent = `Sorry, we are closed on ${dayName}. Please choose another date.`;
         dateInput.value = "";
+        generateTimeSlots();
         return;
       }
 
       dayDisplay.textContent = `Selected day: ${dayName}`;
+      generateTimeSlots();
     });
-  }
-    if (timeInput) {
-    const startHour = 9;
-    const endHour = 18;
-
-    for (let hour = startHour; hour <= endHour; hour++) {
-      ["00", "15", "30", "45"].forEach(minute => {
-        const time = `${String(hour).padStart(2, "0")}:${minute}`;
-
-        // optional: stop exactly at 18:00 only
-        if (hour === endHour && minute !== "00") return;
-
-        const option = document.createElement("option");
-        option.value = time;
-        option.textContent = time;
-
-        timeInput.appendChild(option);
-      });
-    }
   }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    setMinimumDate();
+
     const name = nameInput.value.trim();
     const phone = phoneInput.value.trim();
+    const selectedDate = dateInput.value;
     const selectedTime = timeInput.value;
 
-    if (selectedTime < "09:00" || selectedTime > "18:00") {
-      alert("Please choose a time between 09:00 and 18:00.");
+    const minBookingDate = getMinimumBookingDate();
+
+    if (!selectedDate || selectedDate < minBookingDate) {
+      alert("Please choose a valid booking date.");
       return;
     }
-    
+
+    if (!selectedTime) {
+      alert("Please choose a valid booking time.");
+      return;
+    }
+
+    const selectedDateTime = new Date(`${selectedDate}T${selectedTime}:00`);
+    const now = new Date();
+
+    if (selectedDateTime <= now) {
+      alert("Please choose a future time.");
+      generateTimeSlots();
+      timeInput.value = "";
+      return;
+    }
+
+    const selectedDay = new Date(selectedDate + "T00:00:00").getDay();
+
+    if (selectedDay === 0) {
+      alert("Sorry, we are closed on Sundays.");
+      return;
+    }
+
     const nameValid = /^[A-Za-z\s]+$/.test(name);
     const phoneValid = /^[\+0-9\s]+$/.test(phone);
 
@@ -118,6 +199,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.ok) {
         form.reset();
         dayDisplay.textContent = "";
+        timeInput.innerHTML = `<option value="">Select time</option>`;
+        setMinimumDate();
         successMessage.style.display = "block";
       } else {
         alert("Something went wrong. Please try again.");
