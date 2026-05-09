@@ -8,6 +8,15 @@
 </head>
 <body>
 
+  <nav class="nav">
+    <a href="#" class="logo">Keira Natalie</a>
+    <div>
+      <a href="#services">Services</a>
+      <a href="#booking">Book</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
   <section class="hero">
     <div class="hero-content">
       <p class="hero-label">Hair Salon in Malta</p>
@@ -22,7 +31,7 @@
     </div>
   </section>
 
-  <section class="services">
+  <section id="services" class="services reveal">
     <h2>Our Services</h2>
 
     <div class="services-grid">
@@ -46,7 +55,19 @@
     </div>
   </section>
 
-  <section class="how-it-works">
+  <section class="why-us reveal">
+  <h2>Why Clients Love Booking Online</h2>
+  <p>No calls needed. No missed messages. Easy appointment requests anytime.</p>
+  </section>
+
+  <section class="contact reveal" id="contact">
+  <h2>Contact Us</h2>
+  <p>📍 Malta</p>
+  <p>📞 +356 12345678</p>
+  <p>Opening Hours: Monday - Saturday, 9:00 - 18:00</p>
+  </section>
+
+  <section class="how-it-works reveal">
     <h2>How It Works</h2>
 
     <div class="steps">
@@ -67,7 +88,7 @@
     </div>
   </section>
 
-  <section id="booking" class="booking">
+  <section id="booking" class="booking reveal">
     <h2>Request an Appointment</h2>
     <p>
       Choose your preferred service, date, and time. 
@@ -84,7 +105,7 @@
           type="text" 
           name="Customer Name" 
           placeholder="Enter your full name" 
-          pattern="[A-Za-z\s]+" 
+          pattern="[A-Za-zÀ-ÿ\s'-]+" 
           title="Only letters are allowed"
           required
         >
@@ -124,6 +145,13 @@
     <option value="">Select time</option>
   </select>
 </label>
+
+      <label>
+  Notes / Special Request
+  <textarea 
+    name="Notes" 
+    placeholder="Preferred stylist, hair inspiration, treatment details, or any special request..."
+  ></textarea>
 </label>
 
       <button type="submit" class="btn">Submit Request</button>
@@ -137,7 +165,7 @@
       ✅ Booking request sent! We’ll contact you shortly.
     </p>
 
-    <a href="https://wa.me/3561234567" class="whatsapp-btn" target="_blank">
+    <a href="https://wa.me/3561234567" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
       Message us on WhatsApp
     </a>
   </section>
