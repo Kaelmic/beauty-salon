@@ -3,15 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Keira Natalie Hair Studio | Appointment Request</title>
+
+  <title>Keira Natalie Beauty & Hair Studio | Appointment Request</title>
+  <meta 
+    name="description" 
+    content="Request your hair, beauty, nails, brows, lashes, facial, or makeup appointment at Keira Natalie Beauty & Hair Studio in Malta."
+  />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
   <nav class="nav">
-    <a href="#" class="logo">Keira Natalie</a>
-    <div>
+    <a href="#" class="logo">
+      Keira Natalie
+      <span>Beauty & Hair Studio</span>
+    </a>
+
+    <div class="nav-links">
       <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
       <a href="#booking">Book</a>
       <a href="#contact">Contact</a>
     </div>
@@ -19,84 +31,145 @@
 
   <section class="hero">
     <div class="hero-content">
-      <p class="hero-label">Hair Salon in Malta</p>
+      <p class="hero-label">Beauty & Hair Studio in Malta</p>
 
-      <h1>Keira Natalie Hair Studio</h1>
+      <h1>Glow with confidence.</h1>
 
       <p class="hero-text">
-        Fresh cuts, color, and hair treatments made simple. Request your appointment online and we’ll contact you to confirm.
+        Hair, nails, brows, lashes, facials, and beauty treatments made simple.
+        Request your appointment online and we’ll contact you to confirm.
       </p>
 
-      <a href="#booking" class="btn">Request Appointment</a>
+      <div class="hero-actions">
+        <a href="#booking" class="btn">Request Appointment</a>
+        <a href="#services" class="btn btn-secondary">View Services</a>
+      </div>
     </div>
   </section>
 
   <section id="services" class="services reveal">
-    <h2>Our Services</h2>
+    <p class="section-label">Our Treatments</p>
+    <h2>Beauty and hair services designed around you.</h2>
 
     <div class="services-grid">
-      <div class="service-card" onclick="scrollToBooking('Haircut')">
-        <h3>Haircut</h3>
-        <p>Fresh cut and styling tailored to your look.</p>
-        <span>From €15</span>
+      <div class="service-card" onclick="scrollToBooking('Haircut & Styling')">
+        <span class="service-icon">✂️</span>
+        <h3>Haircut & Styling</h3>
+        <p>Fresh cuts, blow-dries, styling, and everyday hair refreshes.</p>
+        <strong>From €15</strong>
       </div>
 
       <div class="service-card" onclick="scrollToBooking('Hair Color')">
+        <span class="service-icon">🎨</span>
         <h3>Hair Color</h3>
-        <p>Full color, highlights, or root touch-up.</p>
-        <span>From €40</span>
+        <p>Full color, highlights, root touch-up, toner, and color refresh.</p>
+        <strong>From €40</strong>
       </div>
 
       <div class="service-card" onclick="scrollToBooking('Hair Treatment')">
+        <span class="service-icon">✨</span>
         <h3>Hair Treatment</h3>
-        <p>Repair, smooth, and restore shine.</p>
-        <span>From €25</span>
+        <p>Repair, smooth, hydrate, and restore shine to tired hair.</p>
+        <strong>From €25</strong>
+      </div>
+
+      <div class="service-card" onclick="scrollToBooking('Nails')">
+        <span class="service-icon">💅</span>
+        <h3>Nails</h3>
+        <p>Manicure, gel polish, nail care, and clean finishing touches.</p>
+        <strong>From €20</strong>
+      </div>
+
+      <div class="service-card" onclick="scrollToBooking('Brows & Lashes')">
+        <span class="service-icon">👁️</span>
+        <h3>Brows & Lashes</h3>
+        <p>Brow shaping, tinting, lash lift, and beauty-enhancing details.</p>
+        <strong>From €18</strong>
+      </div>
+
+      <div class="service-card" onclick="scrollToBooking('Facial Treatment')">
+        <span class="service-icon">🌸</span>
+        <h3>Facial Treatment</h3>
+        <p>Relaxing facial care for a fresh, glowing, and polished look.</p>
+        <strong>From €30</strong>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="experience reveal">
+    <div class="experience-card">
+      <p class="section-label">The Experience</p>
+      <h2>A calm beauty space for everyday confidence.</h2>
+      <p>
+        Whether you are visiting for a fresh haircut, a beauty treatment, or a full glow-up,
+        our goal is to make your appointment simple, relaxing, and personal.
+      </p>
+
+      <div class="stats">
+        <div>
+          <strong>6+</strong>
+          <span>Beauty Categories</span>
+        </div>
+
+        <div>
+          <strong>Online</strong>
+          <span>Easy Requests</span>
+        </div>
+
+        <div>
+          <strong>Malta</strong>
+          <span>Local Studio</span>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="why-us reveal">
-  <h2>Why Clients Love Booking Online</h2>
-  <p>No calls needed. No missed messages. Easy appointment requests anytime.</p>
-  </section>
-
-  <section class="contact reveal" id="contact">
-  <h2>Contact Us</h2>
-  <p>📍 Malta</p>
-  <p>📞 +356 12345678</p>
-  <p>Opening Hours: Monday - Saturday, 9:00 - 18:00</p>
+    <p class="section-label">Why Book Online</p>
+    <h2>Simple requests. Less waiting. Easier planning.</h2>
+    <p>
+      No need to call during busy hours. Send your preferred service, date, and time,
+      then we’ll review availability and confirm your appointment.
+    </p>
   </section>
 
   <section class="how-it-works reveal">
-    <h2>How It Works</h2>
+    <p class="section-label">How It Works</p>
+    <h2>Your appointment request in three simple steps.</h2>
 
     <div class="steps">
       <div class="step">
-        <h3>1. Submit Request</h3>
-        <p>Choose your preferred service, date, and time.</p>
+        <span>01</span>
+        <h3>Submit Request</h3>
+        <p>Choose your preferred beauty or hair service, date, and time.</p>
       </div>
 
       <div class="step">
-        <h3>2. We Check Availability</h3>
-        <p>Our team reviews your request and schedule.</p>
+        <span>02</span>
+        <h3>We Check Availability</h3>
+        <p>Our team reviews your request and checks the schedule.</p>
       </div>
 
       <div class="step">
-        <h3>3. We Confirm</h3>
+        <span>03</span>
+        <h3>We Confirm</h3>
         <p>We contact you by phone or WhatsApp to confirm your appointment.</p>
       </div>
     </div>
   </section>
 
   <section id="booking" class="booking reveal">
-    <h2>Request an Appointment</h2>
-    <p>
-      Choose your preferred service, date, and time. 
-      Our team will review your request and contact you to confirm your booking.
-    </p>
+    <div class="booking-header">
+      <p class="section-label">Book Online</p>
+      <h2>Request an Appointment</h2>
+      <p>
+        Choose your preferred service, date, and time.
+        Our team will review your request and contact you to confirm your booking.
+      </p>
+    </div>
 
     <form action="https://formspree.io/f/myklvygy" method="POST" class="booking-form">
-      <input type="hidden" name="_subject" value="New Booking Request - Keira Natalie Hair Studio">
+      <input type="hidden" name="_subject" value="New Booking Request - Keira Natalie Beauty & Hair Studio">
       <input type="hidden" name="_template" value="table">
 
       <label>
@@ -127,32 +200,37 @@
         Service
         <select name="Service" id="serviceSelect" required>
           <option value="">Choose a service</option>
-          <option>Haircut</option>
+          <option>Haircut & Styling</option>
           <option>Hair Color</option>
           <option>Hair Treatment</option>
+          <option>Nails</option>
+          <option>Brows & Lashes</option>
+          <option>Facial Treatment</option>
+          <option>Makeup</option>
+          <option>Other Beauty Service</option>
         </select>
       </label>
 
-        <label>
-  Preferred Date
-  <input type="date" name="Preferred Date" id="dateInput" required>
-  <p id="day-display" class="day-display"></p>
-</label>
-        
       <label>
-  Preferred Time
-  <select name="Preferred Time" id="timeInput" required>
-    <option value="">Select time</option>
-  </select>
-</label>
+        Preferred Date
+        <input type="date" name="Preferred Date" id="dateInput" required>
+        <p id="day-display" class="day-display"></p>
+      </label>
 
       <label>
-  Notes / Special Request
-  <textarea 
-    name="Notes" 
-    placeholder="Preferred stylist, hair inspiration, treatment details, or any special request..."
-  ></textarea>
-</label>
+        Preferred Time
+        <select name="Preferred Time" id="timeInput" required>
+          <option value="">Select time</option>
+        </select>
+      </label>
+
+      <label>
+        Notes / Special Request
+        <textarea 
+          name="Notes" 
+          placeholder="Preferred stylist, beauty treatment details, inspiration, or any special request..."
+        ></textarea>
+      </label>
 
       <button type="submit" class="btn">Submit Request</button>
 
@@ -170,8 +248,30 @@
     </a>
   </section>
 
+  <section class="contact reveal" id="contact">
+    <p class="section-label">Contact</p>
+    <h2>Visit or message the studio.</h2>
+
+    <div class="contact-grid">
+      <div>
+        <h3>Location</h3>
+        <p>📍 Malta</p>
+      </div>
+
+      <div>
+        <h3>Phone</h3>
+        <p>📞 +356 12345678</p>
+      </div>
+
+      <div>
+        <h3>Opening Hours</h3>
+        <p>Monday - Saturday<br>9:00 - 18:00</p>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
-    <p>© 2026 Keira Natalie Hair Studio. All rights reserved.</p>
+    <p>© 2026 Keira Natalie Beauty & Hair Studio. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
