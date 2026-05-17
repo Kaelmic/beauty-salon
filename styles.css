@@ -100,10 +100,10 @@ body {
   min-height: 100vh;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
 
-  padding: 120px 10%;
+  padding: 180px 10% 120px;
 
   overflow: hidden;
 }
@@ -149,6 +149,8 @@ body {
   max-width: 620px;
 
   animation: heroReveal 1s ease;
+
+  margin-top: 20px;
 }
 
 @keyframes heroReveal {
