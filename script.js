@@ -28,10 +28,10 @@ const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-
-    menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
-  });
+  navLinks.classList.toggle("active");
+  menuToggle.classList.toggle("active");
+  
+});
 
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
