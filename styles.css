@@ -8,6 +8,13 @@ html {
   scroll-behavior: smooth;
 }
 
+#services,
+#experience,
+#booking,
+#contact {
+  scroll-margin-top: 120px;
+}
+
 body {
   font-family: "Inter", Arial, sans-serif;
   background: #fffaf7;
@@ -43,6 +50,26 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+.portal-link {
+  padding: 0 18px;
+  border-radius: 999px;
+  background: #fde7f3;
+  color: #be185d !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.portal-link:hover {
+  transform: translateY(-2px);
+}
+
+.portal-link::after {
+  display: none;
+}
+
 .logo {
   display: flex;
   flex-direction: column;
@@ -63,26 +90,30 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  align-items: center;
+  gap: 18px;
 }
 
 .nav-links a {
   position: relative;
+  display: flex;
+  align-items: center;
+  height: 44px;
   text-decoration: none;
-  color: #374151;
-  font-weight: 600;
-  transition: 0.25s ease;
 }
 
 .nav-links a::after {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: -6px;
+  left: 50%;
+  bottom: 6px;
+
   width: 0%;
   height: 2px;
-  background: #ec4899;
-  transition: width 0.25s ease;
+
+  background: currentColor;
+  transition: width 0.3s ease;
+  transform: translateX(-50%);
 }
 
 .nav-links a:hover {
@@ -323,6 +354,12 @@ body {
   font-size: 1rem;
 }
 
+.service-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
 /* EXPERIENCE */
 
 .experience-card {
@@ -390,10 +427,6 @@ body {
 }
 
 /* BOOKING */
-
-#booking {
-  scroll-margin-top: 110px;
-}
 
 .booking {
   max-width: 780px;
@@ -477,8 +510,13 @@ body {
 /* WHATSAPP */
 
 .whatsapp-btn {
-  display: inline-block;
-  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+
+  margin: 24px auto 0;
   padding: 15px 22px;
   border-radius: 999px;
   background: #dcfce7;
@@ -525,15 +563,13 @@ body {
 
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
+  transform: none;
+  transition: opacity 0.8s ease;
 }
 
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* LAPTOP */
@@ -565,14 +601,25 @@ body {
   }
 
   .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 248, 245, 0.96);
-    backdrop-filter: blur(14px);
-    z-index: 999;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: none;
+
+  width: 100%;
+  max-width: 100%;
+
+  padding: 14px 18px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255, 248, 245, 0.96);
+  backdrop-filter: blur(14px);
+
+  border-radius: 0;
+}
 
   .menu-toggle {
     display: block;
@@ -611,10 +658,6 @@ body {
   .nav-links a {
     color: #3b2f2f;
     font-weight: 600;
-  }
-
-  .nav-links a:nth-child(2) {
-    display: none;
   }
 
   .hero {
@@ -703,10 +746,8 @@ body {
 }
 
 @media (max-width: 480px) {
-  .nav-links a:nth-child(1),
-  .nav-links a:nth-child(2),
-  .nav-links a:nth-child(4) {
-    display: none;
+  .nav-links a {
+    display: block;
   }
 
   .hero-inner {
@@ -726,4 +767,5 @@ body {
   .btn {
     width: 100%;
   }
+
 }
