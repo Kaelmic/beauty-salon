@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Staff Dashboard | Keira Natalie Beauty & Hair Studio</title>
+
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-logo">
+          <h2>Keira Natalie</h2>
+          <span>Staff Portal</span>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="#" class="active">Dashboard</a>
+          <a href="#">My Bookings</a>
+          <a href="#">Calendar</a>
+          <a href="#">Vacation Leave</a>
+        </nav>
+      </div>
+
+      <a href="login.html" class="logout-btn">Logout</a>
+    </aside>
+
+    <main class="main-content">
+
+      <header class="topbar">
+        <div>
+          <p class="dashboard-label">Staff Dashboard</p>
+          <h1>Welcome back, Angela 👋</h1>
+        </div>
+
+        <div class="admin-profile">
+          <div class="profile-avatar">A</div>
+
+          <div>
+            <strong>Angela</strong>
+            <p>Hair Stylist</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <span>Today's Bookings</span>
+          <h2>4</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>This Week</span>
+          <h2>12</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Pending Requests</span>
+          <h2>2</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Vacation Days</span>
+          <h2>3</h2>
+        </div>
+      </section>
+
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>My Upcoming Bookings</h2>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Contact</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Maria Galea</td>
+                <td>Hair Color</td>
+                <td>May 20</td>
+                <td>10:30</td>
+                <td>+356 9912 3456</td>
+                <td><span class="status confirmed">Confirmed</span></td>
+              </tr>
+
+              <tr>
+                <td>Claire Borg</td>
+                <td>Haircut & Styling</td>
+                <td>May 20</td>
+                <td>13:00</td>
+                <td>+356 9988 1122</td>
+                <td><span class="status pending">Pending</span></td>
+              </tr>
+
+              <tr>
+                <td>Nicole Attard</td>
+                <td>Hair Treatment</td>
+                <td>May 21</td>
+                <td>15:30</td>
+                <td>+356 9922 7788</td>
+                <td><span class="status confirmed">Confirmed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>My Calendar</h2>
+        </div>
+
+        <div class="calendar-demo">
+          <div class="calendar-day active">
+            <strong>Mon</strong>
+            <span>20</span>
+            <small>4 bookings</small>
+          </div>
+
+          <div class="calendar-day">
+            <strong>Tue</strong>
+            <span>21</span>
+            <small>3 bookings</small>
+          </div>
+
+          <div class="calendar-day leave">
+            <strong>Wed</strong>
+            <span>22</span>
+            <small>Leave</small>
+          </div>
+
+          <div class="calendar-day">
+            <strong>Thu</strong>
+            <span>23</span>
+            <small>2 bookings</small>
+          </div>
+
+          <div class="calendar-day">
+            <strong>Fri</strong>
+            <span>24</span>
+            <small>3 bookings</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>Request Vacation Leave</h2>
+        </div>
+
+        <form class="leave-form">
+          <label>
+            Start Date
+            <input type="date" required />
+          </label>
+
+          <label>
+            End Date
+            <input type="date" required />
+          </label>
+
+          <label>
+            Reason
+            <textarea placeholder="Optional note..."></textarea>
+          </label>
+
+          <button type="submit" class="primary-btn">
+            Submit Leave Request
+          </button>
+        </form>
+      </section>
+
+    </main>
+
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>

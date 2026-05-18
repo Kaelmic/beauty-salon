@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Admin Dashboard | Keira Natalie Beauty & Hair Studio</title>
+
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div class="sidebar-logo">
+        <h2>Keira Natalie</h2>
+        <span>Admin Panel</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Bookings</a>
+        <a href="#">Staff</a>
+        <a href="#">Calendar</a>
+        <a href="#">CMS Articles</a>
+        <a href="#">Services</a>
+        <a href="#">Settings</a>
+      </nav>
+
+      <a href="login.html" class="logout-btn">
+        Logout
+      </a>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+      <!-- TOPBAR -->
+
+      <header class="topbar">
+
+        <div>
+          <p class="dashboard-label">Admin Dashboard</p>
+          <h1>Welcome back, Admin!</h1>
+        </div>
+
+        <div class="admin-profile">
+          <div class="profile-avatar">A</div>
+
+          <div>
+            <strong>Administrator</strong>
+            <p>admin@keiranatalie.com</p>
+          </div>
+        </div>
+
+      </header>
+
+      <!-- STATS -->
+
+      <section class="stats-grid">
+
+        <div class="stat-card">
+          <span>Total Bookings</span>
+          <h2>148</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Today's Appointments</span>
+          <h2>12</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Staff Members</span>
+          <h2>6</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Pending Requests</span>
+          <h2>5</h2>
+        </div>
+
+      </section>
+
+      <!-- BOOKINGS -->
+
+      <section class="dashboard-section">
+
+        <div class="section-header">
+          <h2>Recent Bookings</h2>
+
+          <button class="primary-btn">
+            + Add Booking
+          </button>
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Staff</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>Maria Galea</td>
+                <td>Hair Color</td>
+                <td>Angela</td>
+                <td>May 20</td>
+                <td>10:30</td>
+                <td>
+                  <span class="status confirmed">
+                    Confirmed
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Nicole Attard</td>
+                <td>Nails</td>
+                <td>Sarah</td>
+                <td>May 20</td>
+                <td>12:00</td>
+                <td>
+                  <span class="status pending">
+                    Pending
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Claire Borg</td>
+                <td>Facial Treatment</td>
+                <td>Jessica</td>
+                <td>May 21</td>
+                <td>14:15</td>
+                <td>
+                  <span class="status confirmed">
+                    Confirmed
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+      <!-- STAFF -->
+
+      <section class="dashboard-section">
+
+        <div class="section-header">
+          <h2>Staff Management</h2>
+
+          <button class="primary-btn">
+            + Add Staff
+          </button>
+        </div>
+
+        <div class="staff-grid">
+
+          <div class="staff-card">
+            <div class="staff-avatar">A</div>
+
+            <h3>Angela</h3>
+
+            <p>Hair Stylist</p>
+
+            <span>12 bookings this week</span>
+          </div>
+
+          <div class="staff-card">
+            <div class="staff-avatar">S</div>
+
+            <h3>Sarah</h3>
+
+            <p>Nail Technician</p>
+
+            <span>9 bookings this week</span>
+          </div>
+
+          <div class="staff-card">
+            <div class="staff-avatar">J</div>
+
+            <h3>Jessica</h3>
+
+            <p>Beauty Specialist</p>
+
+            <span>15 bookings this week</span>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- CMS -->
+
+      <section class="dashboard-section">
+
+        <div class="section-header">
+          <h2>Featured CMS Articles</h2>
+
+          <button class="primary-btn">
+            + New Article
+          </button>
+        </div>
+
+        <div class="cms-grid">
+
+          <article class="cms-card">
+            <img 
+              src="images/service1.jpg" 
+              alt="Hair Color"
+            />
+
+            <div class="cms-content">
+              <h3>Hair Color Transformation</h3>
+
+              <p>
+                Modern balayage and color refresh showcase.
+              </p>
+            </div>
+          </article>
+
+          <article class="cms-card">
+            <img 
+              src="images/service2.jpg" 
+              alt="Nails"
+            />
+
+            <div class="cms-content">
+              <h3>Luxury Nail Design</h3>
+
+              <p>
+                Elegant nail art and gel polish inspiration.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>
