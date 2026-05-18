@@ -9,7 +9,7 @@
     name="description" 
     content="Request your hair, beauty, nails, brows, lashes, facial, or makeup appointment at Keira Natalie Beauty & Hair Studio in Malta."
   />
-
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -26,11 +26,13 @@
   </button>
 
   <div class="nav-links" id="navLinks">
-    <a href="#services">Services</a>
-    <a href="#experience">Experience</a>
-    <a href="#booking">Book</a>
-    <a href="#contact">Contact</a>
+  <a href="#services">Services</a>
+  <a href="#experience">Experience</a>
+  <a href="#booking">Book</a>
+  <a href="#contact">Contact</a>
+  <a href="login.html" class="portal-link">Staff Portal</a>
   </div>
+
 </nav>
 
   <section class="hero">
@@ -61,14 +63,18 @@
 
     <div class="services-grid">
       <div class="service-card" onclick="scrollToBooking('Haircut & Styling')">
-        <span class="service-icon">✂️</span>
+        <span class="service-icon">
+          <img src="images/scissor-and-comb-svgrepo-com.svg" alt="Scissors Icon">
+        </span>
         <h3>Haircut & Styling</h3>
         <p>Fresh cuts, blow-dries, styling, and everyday hair refreshes.</p>
         <strong>From €15</strong>
       </div>
 
       <div class="service-card" onclick="scrollToBooking('Hair Color')">
-        <span class="service-icon">🎨</span>
+        <span class="service-icon">
+          <img src="images/hair-dye-svgrepo-com.svg" alt="Hair Dye">
+        </span>
         <h3>Hair Color</h3>
         <p>Full color, highlights, root touch-up, toner, and color refresh.</p>
         <strong>From €40</strong>
