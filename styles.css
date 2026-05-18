@@ -157,6 +157,15 @@ body {
   animation: heroReveal 1s ease;
 }
 
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #3b2f2f;
+  cursor: pointer;
+}
+
 @keyframes heroReveal {
   from {
     opacity: 0;
@@ -556,14 +565,17 @@ body {
   }
 
   .nav {
-    top: 10px;
-    left: 12px;
-    right: 12px;
-    transform: none;
-    width: auto;
-    padding: 12px 14px;
-    border-radius: 18px;
-    gap: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 248, 245, 0.96);
+    backdrop-filter: blur(14px);
+    z-index: 999;
+  }
+
+  .menu-toggle {
+    display: block;
   }
 
   .logo {
@@ -577,14 +589,28 @@ body {
     letter-spacing: 0.6px;
   }
 
-  .nav-links {
-    gap: 10px;
-    flex-wrap: nowrap;
+   .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    width: 220px;
+    background: #fff8f5;
+    border: 1px solid rgba(120, 80, 70, 0.15);
+    border-radius: 18px;
+    padding: 18px;
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 18px 40px rgba(60, 40, 35, 0.15);
+  }
+
+  .nav-links.active {
+    display: flex;
   }
 
   .nav-links a {
-    font-size: 0.78rem;
-    white-space: nowrap;
+    color: #3b2f2f;
+    font-weight: 600;
   }
 
   .nav-links a:nth-child(2) {
