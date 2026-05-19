@@ -28,16 +28,25 @@ const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-  menuToggle.classList.toggle("active");
-  
-});
+    navLinks.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+  });
 
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("active");
-      menuToggle.textContent = "☰";
+      menuToggle.classList.remove("active");
     });
+  });
+
+  document.addEventListener("click", (e) => {
+    const clickedInsideMenu = navLinks.contains(e.target);
+    const clickedBurger = menuToggle.contains(e.target);
+
+    if (!clickedInsideMenu && !clickedBurger) {
+      navLinks.classList.remove("active");
+      menuToggle.classList.remove("active");
+    }
   });
 }
 
@@ -112,7 +121,7 @@ window.addEventListener("scroll", () => {
   }
 
   if (dateInput) {
-    dateInput.min = getTodayFormatted();
+    dateInput.min = new Date().toISOString().split("T")[0];
   }
 
   if (nameInput) {
