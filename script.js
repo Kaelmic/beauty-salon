@@ -48,6 +48,11 @@ if (menuToggle && navLinks) {
       menuToggle.classList.remove("active");
     }
   });
+
+    window.addEventListener("scroll", () => {
+    navLinks.classList.remove("active");
+    menuToggle.classList.remove("active");
+  });
 }
 
 window.addEventListener("scroll", revealOnScroll);
