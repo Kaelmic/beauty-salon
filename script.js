@@ -53,7 +53,7 @@ if (menuToggle && navLinks) {
     navLinks.classList.remove("active");
     menuToggle.classList.remove("active");
   });
-}
+  }
 
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
