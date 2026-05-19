@@ -70,6 +70,51 @@ body {
   display: none;
 }
 
+.portal-icon-btn {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255, 255, 255, 0.6);
+
+  background-image: url("images/people-right-svgrepo-com.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px;
+
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.portal-icon-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  background-color: #fde7f3;
+  border-color: #f9a8d4;
+  box-shadow: 0 12px 25px rgba(236, 72, 153, 0.16);
+}
+
+.portal-icon-btn:active {
+  transform: scale(0.96);
+}
+
+.nav-links .portal-icon-btn::after {
+  display: none !important;
+  content: none !important;
+}
+
+.portal-icon-btn:hover::after {
+  display: none !important;
+  width: 0 !important;
+}
+
 .burger-icon,
 .scissor-icon {
   display: none;
@@ -130,9 +175,6 @@ body {
   width: 100%;
 }
 
-.nav-links a:visited {
-  color: #111827;
-}
 
 /* HERO */
 
@@ -565,8 +607,44 @@ body {
 
 .footer {
   text-align: center;
-  padding: 40px 20px;
-  color: #6b7280;
+  padding: 30px 20px;
+
+  background: #111827;
+  color: #d1d5db;
+
+  margin-top: 80px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.footer-portal-link {
+  text-decoration: none;
+
+  color: #f9a8d4;
+  font-weight: 700;
+
+  transition: 0.25s ease;
+}
+
+.footer-portal-link:hover {
+  color: white;
+}
+
+.footer-copy {
+  line-height: 1.7;
+}
+
+.footer-copy span {
+  color: #9ca3af;
 }
 
 /* REVEAL */
@@ -841,6 +919,15 @@ body {
     padding: 35px 20px;
   }
 }
+.footer-content {
+    flex-direction: inherit;
+    text-align: center;
+  }
+
+.footer-copy span {
+    display: block;
+    margin-top: 2px;
+  }
 
 @media (max-width: 480px) {
   .nav-links a {
