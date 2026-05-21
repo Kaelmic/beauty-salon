@@ -1,36 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* SIDEBAR / MOBILE BURGER MENU */
+  /* =========================================
+     SIDEBAR / MOBILE BURGER MENU
+  ========================================= */
 
   const dashboardMenuBtn = document.getElementById("dashboardMenuBtn");
   const sidebar = document.querySelector(".sidebar");
   const sidebarLinks = document.querySelectorAll(".sidebar-nav a");
   const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
 
-  function closeSidebar() {
-    if (sidebar) {
-      sidebar.classList.remove("active");
-    }
-
-    if (dashboardMenuBtn) {
-      dashboardMenuBtn.classList.remove("active");
-    }
+  function openSidebar() {
+  if (sidebar) {
+    sidebar.classList.add("active");
   }
+
+  if (dashboardMenuBtn) {
+    dashboardMenuBtn.classList.add("active");
+  }
+
+  document.body.classList.add("sidebar-open");
+}
+
+function closeSidebar() {
+  if (sidebar) {
+    sidebar.classList.remove("active");
+  }
+
+  if (dashboardMenuBtn) {
+    dashboardMenuBtn.classList.remove("active");
+  }
+
+  document.body.classList.remove("sidebar-open");
+}
 
   if (dashboardMenuBtn && sidebar) {
     dashboardMenuBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("active");
-      dashboardMenuBtn.classList.toggle("active");
+      const isActive = sidebar.classList.contains("active");
+
+      if (isActive) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
     });
   }
 
   if (sidebarCloseBtn) {
-  sidebarCloseBtn.addEventListener("click", closeSidebar);
-}
+    sidebarCloseBtn.addEventListener("click", closeSidebar);
+  }
 
   sidebarLinks.forEach((link) => {
     link.addEventListener("click", () => {
-
       sidebarLinks.forEach((item) => {
         item.classList.remove("active");
       });
@@ -44,7 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", closeSidebar);
 
 
-  /* DEMO VACATION LEAVE FORM */
+  /* =========================================
+     DEMO VACATION LEAVE FORM
+  ========================================= */
 
   const leaveForm = document.querySelector(".leave-form");
 
@@ -73,7 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* DEMO CMS / BUTTON ACTIONS */
+  /* =========================================
+     DEMO CMS / BUTTON ACTIONS
+  ========================================= */
 
   const cmsButtons = document.querySelectorAll(".primary-btn");
 
@@ -96,7 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* SIMPLE TABLE ROW HOVER EFFECT */
+  /* =========================================
+     SIMPLE TABLE ROW HOVER EFFECT
+  ========================================= */
 
   const tableRows = document.querySelectorAll("tbody tr");
 
@@ -111,7 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /*DEMO CALENDAR DAY ACTIVE STATE */
+  /* =========================================
+     DEMO CALENDAR DAY ACTIVE STATE
+  ========================================= */
 
   const calendarDays = document.querySelectorAll(".calendar-day");
 
@@ -124,5 +152,13 @@ document.addEventListener("DOMContentLoaded", () => {
       day.classList.add("active");
     });
   });
+
+  const dateInputs = document.querySelectorAll('input[type="date"]');
+
+const today = new Date().toISOString().split("T")[0];
+
+dateInputs.forEach((input) => {
+  input.min = today;
+});
 
 });
