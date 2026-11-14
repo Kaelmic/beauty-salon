@@ -1,122 +1,186 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".booking-form");
-  const successMessage = document.getElementById("success-message");
+  const navToggle = document.getElementById("navToggle");
+  const primaryNav = document.getElementById("primaryNav");
 
-  if (!form || !successMessage) return;
+  if (navToggle && primaryNav) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = primaryNav.classList.toggle("open");
 
-  const nameInput = document.querySelector('input[name="Customer Name"]');
-  const phoneInput = document.querySelector('input[name="Phone Number"]');
-  const dateInput = document.getElementById("dateInput");
-  const dayDisplay = document.getElementById("day-display");
-  const timeInput = document.getElementById("timeInput");
-  const submitBtn = form.querySelector("button");
-  const revealElements = document.querySelectorAll(".reveal");
+      navToggle.classList.toggle("active", isOpen);
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
 
-function revealOnScroll() {
-  revealElements.forEach((element) => {
-    const elementTop = element.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
+    primaryNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        primaryNav.classList.remove("open");
+        navToggle.classList.remove("active");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 
-    if (elementTop < windowHeight - 100) {
-      element.classList.add("active");
-    }
-  });
-}
+  const serviceSelect = document.getElementById("serviceSelect");
 
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-    menuToggle.classList.toggle("active");
-  });
-
-  navLinks.querySelectorAll("a").forEach((link) => {
+  document.querySelectorAll("[data-service]").forEach((link) => {
     link.addEventListener("click", () => {
-      navLinks.classList.remove("active");
-      menuToggle.classList.remove("active");
+      if (serviceSelect) {
+        serviceSelect.value = link.dataset.service || "";
+      }
     });
   });
 
-  document.addEventListener("click", (e) => {
-    const clickedInsideMenu = navLinks.contains(e.target);
-    const clickedBurger = menuToggle.contains(e.target);
+  const filterButtons = document.querySelectorAll(".filter");
+  const galleryItems = document.querySelectorAll(".gallery-item");
 
-    if (!clickedInsideMenu && !clickedBurger) {
-      navLinks.classList.remove("active");
-      menuToggle.classList.remove("active");
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      const filter = button.dataset.filter;
+
+      galleryItems.forEach((item) => {
+        const shouldHide =
+          filter !== "all" && item.dataset.category !== filter;
+
+        item.classList.toggle("hidden", shouldHide);
+      });
+    });
+  });
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxPhoto = document.getElementById("lightboxPhoto");
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  function closeLightbox() {
+    lightbox?.classList.remove("open");
+    lightbox?.setAttribute("aria-hidden", "true");
+  }
+
+  galleryItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (!lightbox || !lightboxPhoto) return;
+
+      lightboxPhoto.style.backgroundImage =
+        getComputedStyle(item).backgroundImage;
+
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+    });
+  });
+
+  lightboxClose?.addEventListener("click", closeLightbox);
+
+  lightbox?.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
     }
   });
 
-    window.addEventListener("scroll", () => {
-    navLinks.classList.remove("active");
-    menuToggle.classList.remove("active");
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
   });
+
+  const testimonials = document.querySelectorAll(".testimonial");
+  const prevQuote = document.getElementById("prevQuote");
+  const nextQuote = document.getElementById("nextQuote");
+
+  let quoteIndex = 0;
+
+  function showQuote(index) {
+    testimonials.forEach((testimonial, itemIndex) => {
+      testimonial.classList.toggle("active", itemIndex === index);
+    });
   }
 
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
+  prevQuote?.addEventListener("click", () => {
+    quoteIndex =
+      (quoteIndex - 1 + testimonials.length) % testimonials.length;
 
-const hero = document.querySelector(".hero");
+    showQuote(quoteIndex);
+  });
 
-window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
+  nextQuote?.addEventListener("click", () => {
+    quoteIndex = (quoteIndex + 1) % testimonials.length;
 
-  if (hero) {
-    hero.style.backgroundPositionY = `${scrollY * 0.4}px`;
-  }
-});
+    showQuote(quoteIndex);
+  });
 
-  function getTodayFormatted() {
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, "0");
-    const dd = String(now.getDate()).padStart(2, "0");
+  const form = document.querySelector(".booking-form");
+  const successMessage = document.getElementById("success-message");
 
-    return `${yyyy}-${mm}-${dd}`;
-  }
+  if (!form) return;
 
-  function getDemoBookedSlots() {
-    const today = getTodayFormatted();
+  const nameInput = form.querySelector(
+    'input[name="Customer Name"]'
+  );
 
-    return {
-      [today]: ["14:15"], // demo booked slot for today
-    };
+  const phoneInput = form.querySelector(
+    'input[name="Phone Number"]'
+  );
+
+  const dateInput = document.getElementById("dateInput");
+  const dayDisplay = document.getElementById("day-display");
+  const timeInput = document.getElementById("timeInput");
+
+  const submitButton = form.querySelector(
+    'button[type="submit"]'
+  );
+
+  function localDateString(date = new Date()) {
+    const year = date.getFullYear();
+
+    const month = String(date.getMonth() + 1).padStart(
+      2,
+      "0"
+    );
+
+    const day = String(date.getDate()).padStart(
+      2,
+      "0"
+    );
+
+    return `${year}-${month}-${day}`;
   }
 
   function generateTimeSlots() {
     if (!timeInput || !dateInput) return;
 
-    timeInput.innerHTML = `<option value="">Select time</option>`;
+    timeInput.innerHTML =
+      '<option value="">Select a time</option>';
 
     if (!dateInput.value) return;
 
-    const selectedDate = dateInput.value;
-    const now = new Date();
-    const bookedSlots = getDemoBookedSlots();
+    const isToday =
+      dateInput.value === localDateString();
 
-    const startHour = 9;
-    const endHour = 18;
+    const earliestTime = new Date(
+      Date.now() + 15 * 60 * 1000
+    );
 
-    const todayFormatted = getTodayFormatted();
-    const isToday = selectedDate === todayFormatted;
-
-    const minimumAllowedTime = new Date(now.getTime() + 15 * 60 * 1000);
-
-    for (let hour = startHour; hour <= endHour; hour++) {
+    for (let hour = 9; hour <= 18; hour += 1) {
       ["00", "15", "30", "45"].forEach((minute) => {
-        if (hour === endHour && minute !== "00") return;
+        if (hour === 18 && minute !== "00") return;
 
-        const time = `${String(hour).padStart(2, "0")}:${minute}`;
-        const slotDateTime = new Date(`${selectedDate}T${time}`);
+        const time =
+          `${String(hour).padStart(2, "0")}:${minute}`;
 
-        const isTooSoon = isToday && slotDateTime <= minimumAllowedTime;
-        const isBooked = bookedSlots[selectedDate]?.includes(time);
+        const slotDate = new Date(
+          `${dateInput.value}T${time}`
+        );
 
-        if (isTooSoon || isBooked) return;
+        if (isToday && slotDate <= earliestTime) {
+          return;
+        }
 
-        const option = document.createElement("option");
+        const option =
+          document.createElement("option");
+
         option.value = time;
         option.textContent = time;
 
@@ -126,119 +190,112 @@ window.addEventListener("scroll", () => {
   }
 
   if (dateInput) {
-    dateInput.min = new Date().toISOString().split("T")[0];
+    dateInput.min = localDateString();
   }
 
-  if (nameInput) {
-    nameInput.addEventListener("input", () => {
-      nameInput.value = nameInput.value.replace(/[^A-Za-zÀ-ÿ\s'-]/g, "");
-    });
-  }
+  nameInput?.addEventListener("input", () => {
+    nameInput.value = nameInput.value.replace(
+      /[^A-Za-zÀ-ÿ\s'-]/g,
+      ""
+    );
+  });
 
-  if (phoneInput) {
-    phoneInput.addEventListener("input", () => {
-      phoneInput.value = phoneInput.value.replace(/[^\d+\s]/g, "");
-    });
-  }
+  phoneInput?.addEventListener("input", () => {
+    phoneInput.value = phoneInput.value.replace(
+      /[^\d+\s]/g,
+      ""
+    );
+  });
 
-  if (dateInput && dayDisplay) {
-    dateInput.addEventListener("change", () => {
-      if (!dateInput.value) {
-        generateTimeSlots();
-        return;
+  dateInput?.addEventListener("change", () => {
+    if (!dateInput.value) {
+      if (dayDisplay) {
+        dayDisplay.textContent = "";
       }
 
-      const selectedDate = new Date(dateInput.value + "T00:00:00");
-
-      const dayName = selectedDate.toLocaleDateString("en-US", {
-        weekday: "long",
-      });
-
-      const dayNumber = selectedDate.getDay();
-      const closedDays = [0]; // Sunday
-
-      if (closedDays.includes(dayNumber)) {
-        dayDisplay.textContent = `Sorry, we are closed on ${dayName}. Please choose another date.`;
-        dateInput.value = "";
-        generateTimeSlots();
-        return;
-      }
-
-      dayDisplay.textContent = `Selected day: ${dayName}`;
       generateTimeSlots();
-    });
-  }
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const name = nameInput.value.trim();
-    const phone = phoneInput.value.trim();
-    const selectedTime = timeInput.value;
-
-    if (!selectedTime) {
-      alert("Please choose an available time.");
       return;
     }
 
-    if (selectedTime < "09:00" || selectedTime > "18:00") {
-      alert("Please choose a time between 09:00 and 18:00.");
+    const selectedDate = new Date(
+      `${dateInput.value}T00:00:00`
+    );
+
+    const dayName = selectedDate.toLocaleDateString(
+      "en-GB",
+      {
+        weekday: "long",
+      }
+    );
+
+    if (selectedDate.getDay() === 0) {
+      if (dayDisplay) {
+        dayDisplay.textContent =
+          `The studio is closed on ${dayName}s.`;
+      }
+
+      dateInput.value = "";
+      generateTimeSlots();
+
       return;
     }
 
-    const nameValid = /^[A-Za-zÀ-ÿ\s'-]+$/.test(name);
-    const phoneValid = /^[\+0-9\s]+$/.test(phone);
+    if (dayDisplay) {
+      dayDisplay.textContent = dayName;
+    }
 
-    if (!nameValid) {
-      alert("Name should contain letters only.");
+    generateTimeSlots();
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!timeInput?.value) {
+      alert("Please select an available time.");
       return;
     }
 
-    if (!phoneValid) {
-      alert("Phone number should contain only numbers, spaces, or +.");
-      return;
+    const formData = new FormData(form);
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending request";
     }
-
-    const data = new FormData(form);
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
 
     try {
       const response = await fetch(form.action, {
         method: "POST",
-        body: data,
+        body: formData,
         headers: {
           Accept: "application/json",
         },
       });
 
-      if (response.ok) {
-        form.reset();
+      if (!response.ok) {
+        throw new Error("Booking request failed");
+      }
+
+      form.reset();
+
+      if (dayDisplay) {
         dayDisplay.textContent = "";
-        generateTimeSlots();
+      }
+
+      generateTimeSlots();
+
+      if (successMessage) {
         successMessage.style.display = "block";
-      } else {
-        alert("Something went wrong. Please try again.");
       }
     } catch (error) {
-      alert("Network error. Please check your connection.");
+      alert(
+        "The request could not be sent. Please try again or contact us through WhatsApp."
+      );
     } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit Request";
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent =
+          "Send booking request";
+      }
     }
   });
 });
-
-function scrollToBooking(serviceName) {
-  const bookingSection = document.getElementById("booking");
-  const serviceSelect = document.getElementById("serviceSelect");
-
-  if (serviceSelect && serviceName) {
-    serviceSelect.value = serviceName;
-  }
-
-  if (bookingSection) {
-    bookingSection.scrollIntoView({ behavior: "smooth" });
-  }
-}

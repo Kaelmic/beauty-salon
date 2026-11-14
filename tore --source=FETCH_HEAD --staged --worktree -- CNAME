@@ -1,0 +1,21 @@
+ CNAME                                    |    1 [31m-[m
+ admin-dashboard.html                     |  277 [31m-----[m
+ dashboard.css                            |  719 [31m------------[m
+ dashboard.js                             |  164 [31m---[m
+ favicon.png                              |  Bin [31m1473154[m -> [32m0[m bytes
+ images/bg 1.png                          |  Bin [31m1659785[m -> [32m0[m bytes
+ images/blonde-dimensional-hair-color.jpg |  Bin [31m217274[m -> [32m0[m bytes
+ images/cover11.jpg                       |  Bin [31m51131[m -> [32m0[m bytes
+ images/hair-dye-svgrepo-com.svg          |   85 [31m--[m
+ images/people-right-svgrepo-com.svg      |    7 [31m-[m
+ images/scissor-and-comb-svgrepo-com.svg  |   47 [31m-[m
+ images/scissor-svgrepo-com.svg           |    2 [31m-[m
+ index.html                               |  646 [32m+++++[m[31m------[m
+ login.css                                |  285 [31m-----[m
+ login.html                               |   83 [31m--[m
+ login.js                                 |   26 [31m-[m
+ responsive.css                           |  201 [32m++++[m
+ script.js                                |  545 [32m+++++[m[31m-----[m
+ staff-dashboard.html                     |  205 [31m----[m
+ styles.css                               | 1740 [32m++++++++++++++[m[31m----------------[m
+ 20 files changed, 1617 insertions(+), 3416 deletions(-)
